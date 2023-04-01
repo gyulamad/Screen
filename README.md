@@ -44,7 +44,7 @@ When creating the `Graphics` object you have to pass an `Adafruit_GFX` object or
 MCUFRIEND_kbv tft;
 Graphics graphics(tft);
 ```
-If you duing the same you may want to setup your screen as usual in the `setup()` function:
+If you are doing the same you may want to setup your screen as usual in the `setup()` function:
 ```
 setup() {
     tft.reset();
