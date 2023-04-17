@@ -3,7 +3,7 @@
 
 class SDLGraphics {
 private:
-    const int FONT_SIZE_MULTIPLIER = 16; // TODO: to condig
+    const int FONT_SIZE_MULTIPLIER = 16; // TODO: to config
 protected:
     SDL_Window* window;
     SDL_Renderer* renderer; 
