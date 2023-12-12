@@ -25,7 +25,7 @@ Next, you have to create a `Graphics` and `Touch` object that will be used by th
 Graphics graphics(tft);
 Touch touch(ts, YP, XM);
 ```
-And then create a Screen template object with the number of UI elements in it. For example, if you need `5` button use the following:
+Then create a Screen template object with the number of UI elements in it. For example, if you need `5` button use the following:
 ```
 Screen<5> screen(graphics, touch);
 ```
@@ -44,7 +44,7 @@ When creating the `Graphics` object you have to pass an `Adafruit_GFX` object or
 MCUFRIEND_kbv tft;
 Graphics graphics(tft);
 ```
-If you are doing the same you may want to setup your screen as usual in the `setup()` function:
+If you are doing the same you may want to set up your screen as usual in the `setup()` function:
 ```
 setup() {
     tft.reset();
@@ -68,13 +68,13 @@ TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
 int rotation = 0;
 Touch touch(ts, YP, XM, rotation);
 ```
-And then you have to `begin` to prompt the user to the calibration in the setup by passing the screen size and the `Graphics` object:
+Then you have to `begin` to prompt the user to the calibration in the setup passing the screen size and the `Graphics` object:
 ```
 Touch::Calibration calibration = touch.begin(320, 240, graphics);
 // ... save the calibration
 
 ```
-This will returns a `Calibration` struct that you can save (for e.g into the prog-mem or an SD card) and then you can use after the next restart:
+This will return a `Calibration` struct that you can save (e.g into the prog-mem or an SD card) and then you can use after the next restart:
 ```
 // ... load the calibration and or prompt the user "if" this is the first start:
 touch.begin(320, 240, calibration.tsMinX, calibration.tsMinY, calibration.tsMaxX, calibration.tsMaxY, calibration.alpha, calibration.cmax, calibration.cmin);
@@ -82,7 +82,7 @@ touch.begin(320, 240, calibration.tsMinX, calibration.tsMinY, calibration.tsMaxX
 ```
 ## `Touch::Calibration` and `Touch::begin()`
 
-For touch screen anti-spin the `Touch` object use and EMA (exponential moving average calculation with high/low threshold) that could be differ on each device thepending on the touch-screen sensiticity and device speed, you have to make an estimated pre-calculation to find the best parameters. By default the following constats are used:
+For touch screen anti-spin the `Touch` object use and EMA (exponential moving average calculation with high/low threshold) could differ on each device depending on the touch-screen sensitivity and device speed, you have to make an estimated pre-calculation to find the best parameters. By default, the following constants are used:
 ```
 #define SCREEN_DEFAULT_CLK_ALPHA 10
 #define SCREEN_DEFAULT_CLK_MAX 150
@@ -90,7 +90,7 @@ For touch screen anti-spin the `Touch` object use and EMA (exponential moving av
 ```
 You can predefine them before including the `Screen.h` or by passing them directly to the `Touch::begin` function as optional parameters.
 
-The `Touch::begin` function calibration parameters and the `Calibration` sturct:
+The `Touch::begin` function calibration parameters and the `Calibration` struct:
 ```
 struct Calibration {
     
@@ -110,31 +110,31 @@ struct Calibration {
 ```
 
 ## `Screen`
-After you created a `Screen` object, for e.g:
+After you create a `Screen` object, for e.g:
 ```
 Screen<5> screen(gfx, ts);
 ```
-then you can access to each element as an array like:
+then you can access each element as an array like:
 ```
 Screen::Elem elem = screen[n]; // where `n` is the index of UI element (starts from zero)
 ```
 
 ## `Screen::reset(size_t size)`
-Resets the screen and redraw all element. `size` parameter is optional, tells the `Screen` object how many elemet you are using. It's usefull when you set different pages and just redefined the screen elements bt using less or even more elements.
+Resets the screen and redraw all elements. `size` parameter is optional, and tells the `Screen` object how many elements you are using. It's useful when you set different pages and just redefine the screen elements by using fewer or even more elements.
 
 Example:
 ```
 screen.reset(3); // the screen.loop() method will taking care only the first 3 elements
 ```
 ## `Screen::size(size_t size)`
-Same as the `Screen::reset(size_t size)` but it won't reset the elements onli re-size the screen.
+Same as the `Screen::reset(size_t size)` but it won't reset the elements only re-size the screen.
 
 Example:
 ```
 screen.size(3); // the screen.loop() method will taking care only the first 3 elements
 ```
 ## `Screen::refresh()`
-Refreshes the screen. Usefull when you re-define the UI elements or re-size the screen.
+Refreshes the screen. Useful when you re-define the UI elements or re-size the screen.
 
 Example:
 ```
@@ -146,7 +146,7 @@ The default Screen background color is defined by the theme file (`ScreenThemeXX
 ```
 screen.color = COLOR(EGA_BRIGHT_BLUE);
 ```
-or by using the direct `Color` type which is different on each platform. If you are using SDL library, the Color will be an RED/GREEN/BLUE/Alpha SDL_Color struct: 
+or by using the direct `Color` type which is different on each platform. If you are using the SDL library, the Color will be a RED/GREEN/BLUE/Alpha SDL_Color struct: 
 ```
 struct SDL_Color_ext {
     Uint8 r;
@@ -161,7 +161,7 @@ color = 0x1234;
 ```
 
 ## `Screen::Elem` struct
-Each UI elements (buttons) on the screen represented by the `Elem` struct and it's properties can be overwritten any time and the `Screen::loop()` function will update it accordingly
+Each UI element (buttons) on the screen is represented by the `Elem` struct and its properties can be overwritten at any time and the `Screen::loop()` function will update it accordingly
 ```
 struct Elem {
     uint16_t top = 0, left = 0, slider = 0, width = SCREEN_THEME_ELEM_WIDTH, height = SCREEN_THEME_ELEM_HEIGHT;
@@ -176,7 +176,7 @@ struct Elem {
 ```
 
 ## `Screen::Elem::Top/Left/Width/Height/Text`
-The size and text of an elemenet.
+The size and text of an element.
 
 Example:
 ```
@@ -188,7 +188,7 @@ scr[n].text = "Touch ME!"
 ```
 
 ## `Screen::touch/release/move`
-The event handlers that can be attached to an element.
+The event handlers can be attached to an element.
 
 Example:
 ```
@@ -200,7 +200,7 @@ void touch_event(int x, int y) {
 
 screen[n].touch = touch_event;
 ```
-Note: each event handler needs two (x/y) parameter that will be passed where the event happend.
+Note: each event handler needs two (x/y) parameters that will be passed where the event happened.
 
 ## Screen::Elem::props
 Elem properties, packed into a single `uint16_t` variable containing the following properties:
